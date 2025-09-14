@@ -1,0 +1,1705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Health Record System</title>
+
+  <!-- QR Code Generator -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+  <!-- QR Code Scanner -->
+  <script src="https://unpkg.com/html5-qrcode"></script>
+
+  <style>
+    /* [Previous CSS styles remain the same - keeping them as is] */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #313333, #66a6ff);
+      min-height: 100vh; color: #333;
+    }
+    .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+    .header { text-align: center; color: white; margin-bottom: 30px; position: relative;
+    display:flex; flex-direction:column; align-items: center; }
+    
+    /* [All other CSS styles from the original file remain the same] */
+    .user-type-selection {
+      display: flex;
+      flex-direction: row;        
+      justify-content: center;    
+      gap: 20px;                  
+      flex-wrap: wrap;            
+      padding: 50px 80px;
+      margin-bottom: 30px;
+    }
+
+    .user-type-card {
+     background: linear-gradient(135deg, #43cea2, #185a9d); 
+      border-radius: 15px;
+      padding: 30px;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      min-width: 200px;          
+      max-width: 250px;          
+      text-align: center;
+      flex: 1 1 200px;  
+      color:white;         
+    }
+
+    .user-type-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    .module {
+      background: linear-gradient(135deg, #e5f7f7, #2caaaa, white);
+      border-radius: 15px;
+      padding: 30px;
+      margin-bottom: 20px;
+      display: none;
+    }
+
+    .module.active { display: block; }
+    .btn { padding: 10px 20px; border: none; border-radius: 8px; margin: 5px;
+      cursor: pointer; font-weight: 600; }
+    .btn-login { background: linear-gradient(135deg, #e5f7f7, #f5f379, white); }
+    .btn-secondary { background: #6c757d; color: white; }
+    .form-group { margin-bottom: 15px; }
+    .form-group label { display: block; font-weight: 600; margin-bottom: 6px; }
+    input, select {
+      width: 100%; padding: 12px 15px; border: 2px solid #ddd; border-radius: 8px;
+      font-size: 16px; transition: 0.3s; outline: none;
+    }
+    input:focus, select:focus {
+      border-color: #667eea; box-shadow: 0 0 5px rgba(102,126,234,0.3);
+    }
+    #reader, #workerReader { width: 300px; margin: 20px auto; }
+    .record-card {
+      background: #f8f9fa; border: 1px solid #ddd; padding: 10px;
+      border-radius: 6px; margin: 5px 0; cursor: pointer;
+    }
+    .record-card:hover { background: #e9ecef; }
+    .file-upload {
+      border: 2px dashed #667eea; border-radius: 10px; padding: 20px;
+      text-align: center; cursor: pointer; background: #f8f9fa;
+    }
+    .file-item {
+      background: #fff; border: 1px solid #ddd; padding: 8px;
+      border-radius: 6px; margin-bottom: 8px;
+    }
+    .search-filter { margin: 15px 0; display: flex; gap: 10px; }
+    #fileModal {
+      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5); justify-content: center; align-items: center;
+    }
+    #fileModal img, #fileModal iframe {
+      max-width: 90%; max-height: 90%; border-radius: 8px;
+    }
+    #fileModal .close-btn {
+      position: absolute; top: 10px; right: 10px; background: #dc3545;
+      color: white; border: none; padding: 12px; border-radius: 50%; cursor: pointer;
+      font-size: 16px; line-height: 1; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+    #fileModal .close-btn:hover {
+      background: #c82333;
+    }
+    .ls {
+      padding-top:40px; display:flex; flex-direction: row; align-items: center;
+      align-content: center;
+    }
+    .head { color: orange; }
+   
+    .ques {
+      color: orange; 
+      font-weight: 600;
+    }
+
+    .spltest {
+      background: linear-gradient(135deg, #1e3c72, #2a5298, #4a90e2); 
+      color: white;
+      border-radius: 15px; 
+      padding: 30px 30px;
+      max-width: 100%; 
+      margin: 20px auto;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .spltest:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    }
+
+    .rm {
+      padding: 30px 20px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.05);
+      margin-top: 15px;
+      line-height: 1.6;
+    }
+
+    .spltest {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInCard 0.6s forwards;
+    }
+
+    @keyframes fadeInCard {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .rm .ques {
+      color: #ffcc00; 
+      font-weight: 600;
+    }
+
+    #patientFiles, #doctorFiles, #workerFiles {
+      max-height: 300px; overflow-y: auto; padding-right: 10px;
+    }
+    
+    #patientFiles::-webkit-scrollbar, #doctorFiles::-webkit-scrollbar, #workerFiles::-webkit-scrollbar {
+      width: 8px;
+    }
+    #patientFiles::-webkit-scrollbar-track, #doctorFiles::-webkit-scrollbar-track, #workerFiles::-webkit-scrollbar-track {
+      background: #f1f1f1; border-radius: 4px;
+    }
+    #patientFiles::-webkit-scrollbar-thumb, #doctorFiles::-webkit-scrollbar-thumb, #workerFiles::-webkit-scrollbar-thumb {
+      background: #888; border-radius: 4px;
+    }
+    #patientFiles::-webkit-scrollbar-thumb:hover, #doctorFiles::-webkit-scrollbar-thumb:hover, #workerFiles::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      height: 60px;
+      background: linear-gradient(135deg, #43cea2, #185a9d);
+      color: white;
+      padding: 0 40px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .navbar:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    .navbar .logo {
+      font-size: 1.5em;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .navbar .nav-items {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .navbar .nav-items button {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      background-color: #ffcc00;
+      color: #185a9d;
+      transition: all 0.3s ease;
+    }
+
+    .navbar .nav-items button:hover {
+      background-color: #ffd633;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+/* Overlay */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    display: none; /* Hidden by default */
+    z-index: 999;
+}
+
+/* Popup container */
+.contact-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 25px 30px;
+    width: 90%;
+    max-width: 400px; /* Limits size on large screens */
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    z-index: 1000;
+    display: none; /* Hidden by default */
+}
+
+/* Popup title */
+.contact-popup h2 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+/* Inputs and textarea */
+.contact-popup input,
+.contact-popup textarea {
+    width: 100%;
+    padding: 12px 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+/* Submit button */
+.contact-popup button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.contact-popup button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive adjustments */
+@media (max-width: 500px) {
+    .contact-popup {
+        padding: 20px;
+        width: 95%;
+    }
+
+    .contact-popup h2 {
+        font-size: 1.3rem;
+    }
+
+    .contact-popup input,
+    .contact-popup textarea {
+        font-size: 0.95rem;
+    }
+
+    .contact-popup button {
+        font-size: 0.95rem;
+    }
+}
+
+
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        height: auto;
+        padding: 10px 20px;
+        border-radius: 0;
+      }
+
+      .navbar .logo {
+        margin-bottom: 10px;
+        font-size: 1.3em;
+        text-align: center;
+      }
+
+      .navbar .nav-items {
+        justify-content: center;
+        gap: 8px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .navbar .nav-items button {
+        padding: 6px 10px;
+        font-size: 0.9em;
+      }
+
+      .contact-popup {
+        padding: 20px;
+      }
+    }
+
+    .patient-details {
+      width: 100%;
+      margin-top: 10px;
+      font-family: Arial, sans-serif;
+      font-size: 1em;
+    }
+
+    .patient-line {
+      display: flex;
+      flex-wrap: wrap;          
+      gap: 15px;                
+      align-items: center;
+    }
+
+    .patient-line span {
+      white-space: nowrap;      
+    }
+
+    @media (max-width: 600px) {
+      .patient-line {
+        flex-direction: column;
+        gap: 5px;
+      }
+    }
+    #loginSelector {
+        width:500px;
+        padding-left: 80px;
+    }
+
+    /* Modal overlay */
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 1000; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  background: rgba(0,0,0,0.6);
+  overflow-y: auto;
+  padding: 20px; /* ensures content fits on small screens */
+}
+
+/* Modal content */
+.modal-content {
+  background: linear-gradient(135deg, #43cea2, rgb(98, 160, 231));
+  margin: 5% auto;
+  padding: 20px;
+  border-radius: 10px;
+  width: 90%; /* responsive width */
+  max-width: 750px; /* caps width on large screens */
+  height: auto; /* auto height to fit content */
+  max-height: 90vh; /* prevents overflow */
+  position: relative;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+/* Team grid */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 30px 50px; /* row gap 30px, column gap 50px */
+  margin-top: 40px;
+  color: white;
+}
+
+/* Team member card */
+.team-member {
+  text-align: center;
+}
+
+.team-member img {
+  width: 100%;
+  max-width: 140px;
+  height: auto;
+  aspect-ratio: 1 / 1; /* keeps square shape */
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  margin: 0 auto;
+}
+
+.team-member p {
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .team-grid {
+    gap: 25px 30px;
+  }
+  .team-member img {
+    max-width: 120px;
+  }
+  .team-member p {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .team-grid {
+    grid-template-columns: 1fr 1fr; /* two columns on mobile */
+    gap: 20px 20px;
+  }
+  .team-member img {
+    max-width: 100px;
+  }
+  .team-member p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .team-grid {
+    grid-template-columns: 1fr; /* single column on very small screens */
+    gap: 15px 0;
+  }
+  .team-member img {
+    max-width: 90px;
+  }
+  .team-member p {
+    font-size: 0.85rem;
+  }
+}
+
+
+    .close {
+      position: absolute;
+      right: 15px;
+      top: 10px;
+      font-size: 28px;
+      font-weight: bold;
+      color: #333;
+      cursor: pointer;
+    }
+    .close:hover {
+      color: red;
+    }
+
+
+    #google_translate_element select {
+      background: #ffcc00;
+      color: #185a9d;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-weight: bold;
+      cursor: pointer;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      transition: all 0.3s ease;
+    }
+
+    #google_translate_element select:hover {
+      background: #ffd633;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    #google_translate_element {
+      display: inline-block;
+      margin-left: 10px;
+    }
+    .goog-logo-link,
+    .goog-te-gadget span {
+      display: none !important;
+    }
+
+    .goog-te-gadget {
+      font-size: 0 !important;
+    }
+
+    @media (max-width: 768px) {
+      #google_translate_element {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .goog-te-combo {
+        max-width: 100%;
+      }
+    }
+
+    .alert {
+      padding: 15px;
+      margin-bottom: 20px;
+      border: 1px solid transparent;
+      border-radius: 4px;
+    }
+
+    .alert-success {
+      color: #3c763d;
+      background-color: #dff0d8;
+      border-color: #d6e9c6;
+    }
+
+    .alert-error {
+      color: #a94442;
+      background-color: #f2dede;
+      border-color: #ebccd1;
+    }
+.res{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+/* Footer Styles */
+footer {
+  background-color: #1a1a1a;
+  color: #fff;
+  padding: 40px 0 20px;
+  font-family: Arial, sans-serif;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+.footer-section {
+  flex: 1 1 250px;
+  margin: 20px;
+}
+
+.footer-section h3 {
+  margin-bottom: 15px;
+  color: #f4b41a;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-section ul li a:hover {
+  color: #f4b41a;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid #444;
+  font-size: 14px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-section {
+    margin: 10px 0;
+  }
+}
+
+  </style>
+
+   <link rel="icon" type="image/png" href="media/team_images/final.jpg">
+  
+</head>
+<body>
+  <div class="container">
+   <!-- Language Translator -->
+<div id="google_translate_element"></div>
+
+    <div class="header">
+      <div>
+        <h1><span class="head">Digital </span> Health Record Management</h1>
+        <p>Comprehensive healthcare services for migrant workers in Kerala. Access medical care, connect with healthcare professionals, and manage health records with ease.</p>
+      </div>
+    </div>
+   <!-- Navbar -->
+<div class="navbar">
+  <div class="logo">Health Portal</div>
+  <div class="nav-items">
+    <button onclick="openContact()">Contact Us</button>
+    <button onclick="showTeam()" id="teamBtn">Our Team</button>
+   <a href="/admin" target="_blank">
+  <button>Admin</button>
+</a>
+   
+    <button class="login-btn" onclick="showLoginSelector()">Login</button> 
+  </div>
+</div>
+</div>
+<div id="google_translate_element" style="display:none;"></div>
+ <!-- Login Selector -->
+  <div class="res">
+    <div id="loginSelector" class="module">
+      <h2>Login</h2>
+      <div class="ls">
+        <div><button class="btn btn-login" onclick="showModule('patientLogin')">AS Patient</button></div>
+        <div><button class="btn btn-login" onclick="showModule('doctorLogin')"> As Doctor </button></div>
+        <div><button class="btn btn-login" onclick="showModule('workerLogin')">As Health Worker </button></div>
+      </div>
+    </div>
+</div>
+<div class="overlay" id="overlay" onclick="closeContact()"></div>
+<div class="contact-popup" id="contactPopup">
+  <h2>Contact Us</h2>
+  <input type="text" id="name" placeholder="Your Name">
+  <input type="email" id="email" placeholder="Your Email">
+  <textarea id="message" rows="4" placeholder="Your Message"></textarea>
+  <button onclick="submitContact()">Submit</button>
+</div>
+    <!-- User Type Selection -->
+    <div class="user-type-selection">
+  <div class="user-type-card" onclick="showModule('patient')">
+    🧑‍⚕️
+    <h3>Patient</h3>
+    <p>Book appointments, view your health records, and track your medical history easily.</p>
+  </div>
+
+  <div class="user-type-card" onclick="showModule('doctor')">
+    👨‍⚕️
+    <h3>Doctor</h3>
+    <p>Manage patient records, upload reports, and scan QR codes for quick access.</p>
+  </div>
+
+  <div class="user-type-card" onclick="showModule('worker')">
+    👷
+    <h3>Health Worker</h3>
+    <p>Assist doctors, monitor patient activities, and manage hospital workflows efficiently.</p>
+  </div>
+</div>
+
+    <!-- Alert area for messages -->
+    <div id="alertArea"></div>
+
+    <!-- Patient Registration -->
+    <div id="patient" class="module">
+      <h2>Patient Registration</h2>
+      <div class="form-group"><label>Full Name *</label><input type="text" id="patientName"></div>
+      <div class="form-group"><label>Phone Number *</label><input type="text" id="patientPhone"></div>
+      <div class="form-group"><label>Aadhar Number *</label><input type="text" id="patientAadhar"></div>
+      <div class="form-group"><label>Email (Optional)</label><input type="email" id="patientEmail"></div>
+      <button class="btn btn-login" onclick="registerPatient()">Register</button>
+      
+    </div>
+
+    <!-- Patient Login -->
+    <div id="patientLogin" class="module">
+      <h2>Patient Login</h2>
+      <div class="form-group"><label>Full Name</label><input type="text" id="loginPatientName"></div>
+      <div class="form-group"><label>Phone Number</label><input type="text" id="loginPatientPhone"></div>
+      <button class="btn btn-login" onclick="patientLogin()">Login</button>
+    </div>
+
+    <!-- Patient Dashboard -->
+    <div id="patientDashboard" class="module">
+      <h2>Patient Dashboard</h2>
+     <div id="patientDetails" class="patient-details"></div>
+      <div>  <div class="dashboard">
+   
+    <button class="btn" onclick="openAppointmentPopup()"> 🗓️ Book Appointment</button>
+  </div>
+    <div class="overlay" id="overlay"></div>
+
+     <!-- Appointment Popup -->
+  <div id="appointmentPopup" class="contact-popup">
+    <h2>Book an Appointment</h2>
+
+    <div class="form-group">
+      <label>Select Hospital</label>
+      <select id="hospitalSelect" onchange="loadDoctors()">
+        <option value="">-- Select Hospital --</option>
+          <option value="Government Medical College, Thiruvananthapuram">Government Medical College, Thiruvananthapuram</option>
+      <option value="Amrita Institute of Medical Sciences, Kochi">Amrita Institute of Medical Sciences, Kochi</option>
+      <option value="Kozhikode Medical College, Kozhikode">Kozhikode Medical College, Kozhikode</option>
+      <option value="Sree Chitra Tirunal Institute, Trivandrum">Sree Chitra Tirunal Institute, Trivandrum</option>
+      <option value="Aster Medcity, Kochi">Aster Medcity, Kochi</option>
+      <option value="Baby Memorial Hospital, Kozhikode">Baby Memorial Hospital, Kozhikode</option>
+      <option value="Lakeshore Hospital, Kochi">Lakeshore Hospital, Kochi</option>
+      <option value="KIMS Hospital, Thiruvananthapuram">KIMS Hospital, Thiruvananthapuram</option>
+      <option value="Rajagiri Hospital, Kochi">Rajagiri Hospital, Kochi</option>
+      <option value="PVS Memorial Hospital, Calicut">PVS Memorial Hospital, Calicut</option>
+      <option value="Kerala Institute of Medical Sciences, Thiruvananthapuram">Kerala Institute of Medical Sciences, Thiruvananthapuram</option>
+      <option value="District Hospital, Kollam">District Hospital, Kollam</option>
+      <option value="Vinayaka Hospital, Thrissur">Vinayaka Hospital, Thrissur</option>
+      <option value="MIMS Hospital, Kozhikode">MIMS Hospital, Kozhikode</option>
+      <option value="Rajagiri Hospital, Ernakulam">Rajagiri Hospital, Ernakulam</option>
+ 
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Select Doctor</label>
+      <select id="doctorSelect">
+        <option value="">-- Select Doctor --</option>
+        <option value="dr-arjun-cardiology">Dr. Arjun - Cardiology</option>
+  <option value="dr-meera-dermatology">Dr. Meera - Dermatology</option>
+  <option value="dr-rahul-orthopedics">Dr. Rahul - Orthopedics</option>
+  <option value="dr-ananya-neurology">Dr. Ananya - Neurology</option>
+  <option value="dr-vivek-pediatrics">Dr. Vivek - Pediatrics</option>
+  <option value="dr-sneha-gynecology">Dr. Sneha - Gynecology</option>
+  <option value="dr-karthik-ent">Dr. Karthik - ENT</option>
+  <option value="dr-priya-endocrinology">Dr. Priya - Endocrinology</option>
+  <option value="dr-aman-gastroenterology">Dr. Aman - Gastroenterology</option>
+  <option value="dr-neha-nephrology">Dr. Neha - Nephrology</option>
+  
+  <option value="dr-sanjay-oncology">Dr. Sanjay - Oncology</option>
+  <option value="dr-radhika-radiology">Dr. Radhika - Radiology</option>
+  <option value="dr-rohit-urology">Dr. Rohit - Urology</option>
+  <option value="dr-asha-hematology">Dr. Asha - Hematology</option>
+  <option value="dr-vinod-general-medicine">Dr. Vinod - General Medicine</option>
+  <option value="dr-swati-dentistry">Dr. Swati - Dentistry</option>
+  <option value="dr-rajiv-anesthesiology">Dr. Rajiv - Anesthesiology</option>
+  <option value="dr-divya-psychiatry">Dr. Divya - Psychiatry</option>
+  <option value="dr-nikhil-pulmonology">Dr. Nikhil - Pulmonology</option>
+  <option value="dr-lavanya-rheumatology">Dr. Lavanya - Rheumatology</option>
+  
+  <option value="dr-harish-neonatology">Dr. Harish - Neonatology</option>
+  <option value="dr-sapna-plastic-surgery">Dr. Sapna - Plastic Surgery</option>
+  <option value="dr-ajay-vascular-surgery">Dr. Ajay - Vascular Surgery</option>
+  <option value="dr-monika-ophthalmology">Dr. Monika - Ophthalmology</option>
+  <option value="dr-kiran-pathology">Dr. Kiran - Pathology</option>
+  <option value="dr-tanvi-obstetrics">Dr. Tanvi - Obstetrics</option>
+  <option value="dr-omkar-sports-medicine">Dr. Omkar - Sports Medicine</option>
+  <option value="dr-maya-geriatric-medicine">Dr. Maya - Geriatric Medicine</option>
+  <option value="dr-sameer-immunology">Dr. Sameer - Immunology</option>
+  <option value="dr-rupa-family-medicine">Dr. Rupa - Family Medicine</option>
+  
+  <option value="dr-balaji-pain-management">Dr. Balaji - Pain Management</option>
+  <option value="dr-chitra-dermatopathology">Dr. Chitra - Dermatopathology</option>
+ 
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Select Date</label>
+      <input type="date" id="appointmentDate">
+       
+    </div>
+
+    <div class="form-group">
+     <label >Select Time:</label>
+<select id="appointmentTime" name="time-slot">
+  <option value="">-- Select Time Slot --</option>
+  
+  <option value="09:00-09:30">09:00 AM - 09:30 AM</option>
+  <option value="10:00-10:30">10:00 AM - 10:30 AM</option>
+  <option value="11:00-11:30">11:00 AM - 11:30 AM</option>
+  <option value="02:00-02:30">02:00 PM - 02:30 PM</option>
+  <option value="03:00-03:30">03:00 PM - 03:30 PM</option>
+  <option value="04:00-04:30">04:00 PM - 04:30 PM</option>
+</select>
+      
+    </div>
+
+    <div class="popup-buttons">
+      <button class="btn" onclick="bookAppointment()">Book</button>
+      <button class="btn btn-secondary" onclick="closeAppointmentPopup()">Cancel</button>
+    </div>
+  </div>
+</div>
+      <h3>Your QR Code</h3><div id="patientDashboardQR"></div>
+      <div class="search-filter">
+        <input type="text" id="patientSearch" placeholder="Search files...">
+        <select id="patientFilter">
+          <option value="all">All</option>
+          <option value="doctor">Doctor</option>
+          <option value="worker">Worker</option>
+          <option value="patient">Patient</option>
+        </select>
+      </div>
+      <h3>Your Files</h3><div id="patientFiles"></div>
+      <h3>Upload Past Documents</h3>
+      <div class="file-upload" id="patientUploadArea">📂 Upload your files<input type="file" id="patientFileInput" multiple style="display:none;"></div>
+      <button class="btn btn-secondary" onclick="backToHome()">Back to Home</button>
+    </div>
+
+    <!-- Doctor Registration -->
+    <div id="doctor" class="module">
+  <h2>Doctor Registration</h2>
+  <div class="form-group">
+    <label>Doctor Name</label>
+    <input type="text" id="doctorName">
+  </div>
+  <div class="form-group">
+    <label>Specialization</label>
+    <select id="doctorSpec">
+      <option value="General">General</option>
+      <option value="Cardiology">Cardiology</option>
+      <option value="Orthopedics">Orthopedics</option>
+      <option value="Pediatrics">Pediatrics</option>
+      <option value="Dermatology">Dermatology</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label>Hospital (Kerala)</label>
+    <select id="doctorHospital">
+      <option value="">Select Hospital</option>
+      <option value="Government Medical College, Thiruvananthapuram">Government Medical College, Thiruvananthapuram</option>
+      <option value="Amrita Institute of Medical Sciences, Kochi">Amrita Institute of Medical Sciences, Kochi</option>
+      <option value="Kozhikode Medical College, Kozhikode">Kozhikode Medical College, Kozhikode</option>
+      <option value="Sree Chitra Tirunal Institute, Trivandrum">Sree Chitra Tirunal Institute, Trivandrum</option>
+      <option value="Aster Medcity, Kochi">Aster Medcity, Kochi</option>
+      <option value="Baby Memorial Hospital, Kozhikode">Baby Memorial Hospital, Kozhikode</option>
+      <option value="Lakeshore Hospital, Kochi">Lakeshore Hospital, Kochi</option>
+      <option value="KIMS Hospital, Thiruvananthapuram">KIMS Hospital, Thiruvananthapuram</option>
+      <option value="Rajagiri Hospital, Kochi">Rajagiri Hospital, Kochi</option>
+      <option value="PVS Memorial Hospital, Calicut">PVS Memorial Hospital, Calicut</option>
+      <option value="Kerala Institute of Medical Sciences, Thiruvananthapuram">Kerala Institute of Medical Sciences, Thiruvananthapuram</option>
+      <option value="District Hospital, Kollam">District Hospital, Kollam</option>
+      <option value="Vinayaka Hospital, Thrissur">Vinayaka Hospital, Thrissur</option>
+      <option value="MIMS Hospital, Kozhikode">MIMS Hospital, Kozhikode</option>
+      <option value="Rajagiri Hospital, Ernakulam">Rajagiri Hospital, Ernakulam</option>
+    </select>
+  </div>
+  <button class="btn btn-login" onclick="registerDoctor()">Register</button>
+</div>
+
+    <!-- Doctor Login -->
+    <div id="doctorLogin" class="module">
+      <h2>Doctor Login</h2>
+      <div class="form-group"><label>Doctor ID</label><input type="text" id="loginDoctorID"></div>
+      <button class="btn btn-login" onclick="doctorLogin()">Login</button>
+    </div>
+
+    <!-- Doctor Dashboard -->
+    <div id="doctorDashboard" class="module">
+      <h2>Doctor Dashboard</h2>
+      <div id="doctorProfile"></div>
+      <div class="search-filter">
+        <input type="text" id="doctorSearch" placeholder="Search files...">
+        <select id="doctorFilter"></select>
+      </div>
+      <h3>Your Uploaded Files</h3><div id="doctorFiles"></div>
+      <h3>Scan Patient QR</h3>
+      <button class="btn btn-login" onclick="startDoctorScan()">📷 Scan Patient QR</button>
+      <button id="doctorStopBtn" class="btn btn-secondary" style="display:none;" onclick="stopDoctorScan()">✖ Stop</button>
+      <div id="reader" style="display:none;"></div>
+      <input type="file" id="doctorFileInput" multiple>
+      <button class="btn btn-secondary" onclick="backToHome()">Logout</button>
+    </div>
+
+    <!-- Worker Registration -->
+    <div id="worker" class="module">
+      <h2>Health Worker Registration</h2>
+      <div class="form-group"><label>Name</label><input type="text" id="workerName"></div>
+      <div class="form-group"><label>Phone</label><input type="text" id="workerPhone"></div>
+      <button class="btn btn-login" onclick="registerWorker()">Register</button>
+    </div>
+
+    <!-- Worker Login -->
+    <div id="workerLogin" class="module">
+      <h2>Health Worker Login</h2>
+      <div class="form-group"><label>Worker ID</label><input type="text" id="loginWorkerID"></div>
+      <button class="btn btn-login" onclick="workerLogin()">Login</button>
+    </div>
+
+    <!-- Worker Dashboard -->
+    <div id="workerDashboard" class="module">
+      <h2>Health Worker Dashboard</h2>
+      <div id="workerProfile"></div>
+      <div class="search-filter">
+        <input type="text" id="workerSearch" placeholder="Search files...">
+        <select id="workerFilter"></select>
+      </div>
+      <h3>Your Uploaded Files</h3><div id="workerFiles"></div>
+      <h3>Scan Patient QR</h3>
+      <button class="btn btn-login" onclick="startWorkerScan()">📷 Scan Patient QR</button>
+      <button id="workerStopBtn" class="btn btn-secondary" style="display:none;" onclick="stopWorkerScan()">✖ Stop</button>
+      <div id="workerReader" style="display:none;"></div>
+      <input type="file" id="workerFileInput" multiple>
+      <button class="btn btn-secondary" onclick="backToHome()">Logout</button>
+    </div>
+
+    <!-- File View Modal -->
+    <div id="fileModal">
+      <button class="close-btn" onclick="closeFileModal()">✖</button>
+      <div id="fileContent"></div>
+    </div>
+
+    <div class="spltest">
+      <h2><span class="ques">Why </span>choose HealthRecord Management ?</h2>
+      <p class="rm">Digital Health Record (DHR), also known as an Electronic Health Record (EHR), is the computerized version of a patient's medical history that is maintained by healthcare providers over time. It is an essential part of modern healthcare because it brings together patient data in a secure, accessible, and professional way.</p>
+    </div>
+
+    <div class="spltest">
+      <h2> <span class="ques">Uniqueness</span> of this website</h2>
+      <p class="rm">Our project focuses on improving hospital management and patient care.
+It uses <span class="ques">QR code technology</span> to quickly access patient records and track visits.
+A <span class="ques">language translation feature </span>ensures clear communication between patients and medical staff.
+<span class="ques">Online OP registration</span> allows patients to book appointments easily from anywhere.
+These innovations make healthcare faster, more efficient, and patient-friendly.</p>
+    </div>
+
+    <div class="spltest">
+      <h2> <span class="ques">Use  </span>of Digital HealthRecord</h2>
+      <p class="rm">
+Digital Health Records store a patient's medical history securely and electronically.
+They allow doctors to access and update patient information in real-time.
+Patients can view their health data, track treatments, and manage appointments online.
+Health workers help maintain accurate records, improving hospital efficiency and patient care.
+</p>
+    </div>
+    <div id="teamModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2 style="text-align:center;">Meet Our Team</h2>
+
+    <div class="team-grid">
+      <div class="team-member">
+        <img src="media/team_images/member1.jpg" >
+        <p>S.Deepika Madhuri </p>
+      </div>
+      <div class="team-member">
+        <img src="media/team_images/member2.jpg" alt="Member 2">
+        <p>P. Sreehitha Reddy</p>
+      </div>
+      <div class="team-member">
+        <img src="media/team_images/member3.jpg" alt="Member 3">
+        <p>P.Raghavendra</p>
+      </div>
+      <div class="team-member">
+        <img src="media/team_images/member4.jpg" alt="Member 4">
+        <p>P.Rohak</p>
+      </div>
+      <div class="team-member">
+        <img src="media/team_images/member5.jpg" alt="Member 5">
+        <p>O.Mahendra</p>
+      </div>
+      <div class="team-member">
+        <img src="media/team_images/member6.jpg" alt="Member 6">
+        <p>T.Navya Sree</p>
+      </div>
+    </div>
+  </div>
+</div>
+    
+<!-- Footer -->
+<footer>
+  <div class="footer-container">
+    <div class="footer-section about">
+      <h3>About Us</h3>
+      <p>We provide quality healthcare services and ensure patient satisfaction.</p>
+    </div>
+
+    <div class="footer-section links">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Doctors</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section contact">
+      <h3>Contact Us</h3>
+      <p>Email: info@healthcare.com</p>
+      <p>Phone: +91 12345 67890</p>
+      <p>Address: 123 Health St, City, Country</p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    &copy; 2025 Team Techno. All rights reserved.
+  </div>
+</footer>
+
+  <script>
+    // API Base URL - Change this to your Django server URL
+    const API_BASE_URL = 'http://127.0.0.1:8000/api';
+    
+    // Global variables for current user data
+    let currentPatient = null, currentDoctor = null, currentWorker = null;
+    let scanner, workerScanner;
+
+    // CSRF Token for Django
+    function getCookie(name) {
+      let cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].trim();
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            break;
+          }
+        }
+      }
+      return cookieValue;
+    }
+
+    const csrftoken = getCookie('csrftoken');
+
+    // Utility functions
+    function showAlert(message, type = 'success') {
+      const alertArea = document.getElementById('alertArea');
+      const alertDiv = document.createElement('div');
+      alertDiv.className = `alert alert-${type}`;
+      alertDiv.textContent = message;
+      alertArea.innerHTML = '';
+      alertArea.appendChild(alertDiv);
+      
+      setTimeout(() => {
+        alertDiv.remove();
+      }, 5000);
+    }
+
+    function showModule(id) {
+      document.querySelectorAll(".module").forEach(m => m.classList.remove("active"));
+      document.getElementById(id).classList.add("active");
+    }
+
+    function showLoginSelector() { 
+      showModule("loginSelector"); 
+    }
+
+    function backToHome() { 
+      if (confirm("Are you sure you want to log out?")) location.reload(); 
+    }
+
+    // API call helper function
+    async function apiCall(endpoint, method = 'GET', data = null) {
+      console.log(`Making API call: ${method} ${API_BASE_URL}${endpoint}`, data); // Debug log
+      
+      const options = {
+        method: method,
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      };
+
+      if (method === 'POST' && data) {
+        options.body = JSON.stringify(data);
+        // Skip CSRF token for now during testing
+        // options.headers['X-CSRFToken'] = csrftoken;
+      }
+
+      try {
+        const response = await fetch(`${API_BASE_URL}${endpoint}`, options);
+        console.log("Response status:", response.status); // Debug log
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const result = await response.json();
+        console.log("API response:", result); // Debug log
+        return result;
+      } catch (error) {
+        console.error('API Error:', error);
+        // Instead of showing alert here, throw the error to be handled by calling function
+        throw error;
+      }
+    }
+
+    // Patient Functions
+    async function registerPatient() {
+      const name = document.getElementById("patientName").value.trim();
+      const phone = document.getElementById("patientPhone").value.trim();
+      const aadhar = document.getElementById("patientAadhar").value.trim();
+      const email = document.getElementById("patientEmail").value.trim();
+
+      if (!name || !phone || !aadhar) {
+        showAlert("Fill all required fields", 'error');
+        return;
+      }
+
+      if (phone.length !== 10) {
+        showAlert("Phone must be 10 digits", 'error');
+        return;
+      }
+
+      if (aadhar.length !== 12) {
+        showAlert("Aadhar must be 12 digits", 'error');
+        return;
+      }
+
+      const result = await apiCall('/register-patient/', 'POST', {
+        name, phone, aadhar, email
+      });
+
+      if (result.success) {
+        showAlert(result.message);
+        
+        // Generate QR Code
+        let qr = qrcode(0, 'M');
+        qr.addData(JSON.stringify({aadhar: aadhar}));
+        qr.make();
+        document.getElementById("qrCode").innerHTML = qr.createImgTag(6);
+        document.getElementById("qrArea").style.display = "block";
+        
+        // Clear form
+
+  document.getElementById("patientName").value = "";
+  document.getElementById("patientPhone").value = "";
+  document.getElementById("patientAadhar").value = "";
+  document.getElementById("patientEmail").value = "";
+  document.getElementById("qrArea").style.display = "none";
+
+
+      } else {
+        showAlert(result.error, 'error');
+      }
+    }
+
+    async function patientLogin() {
+      const name = document.getElementById("loginPatientName").value.trim();
+      const phone = document.getElementById("loginPatientPhone").value.trim();
+
+      if (!name || !phone) {
+        showAlert("Name and phone are required", 'error');
+        return;
+      }
+
+      const result = await apiCall('/login-patient/', 'POST', {
+        name, phone
+      });
+
+      if (result.success) {
+        currentPatient = result.patient_data;
+        showPatientDashboard();
+      } else {
+        showAlert(result.error, 'error');
+      }
+    }
+
+    function showPatientDashboard() {
+      showModule("patientDashboard");
+      document.getElementById("patientDetails").innerHTML = `
+        <div class="patient-line">
+          <span><b>Name:</b> ${currentPatient.name}</span>
+          <span><b>Phone:</b> ${currentPatient.phone}</span>
+          <span><b>Aadhar:</b> ${currentPatient.aadhar}</span>
+        </div>
+      `;
+
+      let qr = qrcode(0, 'M');
+      qr.addData(JSON.stringify({aadhar: currentPatient.aadhar}));
+      qr.make();
+      document.getElementById("patientDashboardQR").innerHTML = qr.createImgTag(4);
+      loadPatientFiles();
+    }
+
+    async function loadPatientFiles() {
+      if (!currentPatient) return;
+      
+      const result = await apiCall(`/patient-files/${currentPatient.aadhar}/`);
+      if (result.success) {
+        renderPatientFiles(result.files);
+      }
+    }
+
+    function renderPatientFiles(files = []) {
+      let list = document.getElementById("patientFiles");
+      list.innerHTML = "";
+      
+      let search = document.getElementById("patientSearch").value.toLowerCase();
+      let filter = document.getElementById("patientFilter").value;
+      
+      let filteredFiles = files.filter(f => 
+        (f.name.toLowerCase().includes(search)) && 
+        (filter === "all" || f.uploader.includes(filter))
+      );
+      
+      if (filteredFiles.length === 0) {
+        list.innerHTML = "<p>No matching files</p>";
+      }
+      
+      filteredFiles.forEach(f => {
+        let card = document.createElement("div");
+        card.className = "record-card";
+        card.innerHTML = `${f.name} (${Math.round(f.size/1024)} KB) <i>by ${f.uploader}</i>`;
+        card.onclick = () => viewFile(f);
+        list.appendChild(card);
+      });
+    }
+
+    // Doctor Functions
+    async function registerDoctor() {
+      const name = document.getElementById("doctorName").value.trim();
+      const specialization = document.getElementById("doctorSpec").value.trim();
+      const hospital = document.getElementById("doctorHospital").value.trim();
+
+      if (!name || !hospital) {
+        showAlert("Please fill all required fields (Name and Hospital)", 'error');
+        return;
+      }
+
+      const result = await apiCall('/register-doctor/', 'POST', {
+        name, specialization, hospital
+      });
+
+      if (result.success) {
+        showAlert(result.message);
+        document.getElementById("doctorName").value = "";
+        document.getElementById("doctorHospital").value = "";
+        showModule("doctorLogin");
+      } else {
+        showAlert(result.error, 'error');
+      }
+    }
+
+    async function doctorLogin() {
+      const doctor_id = document.getElementById("loginDoctorID").value.trim();
+
+      if (!doctor_id) {
+        showAlert("Doctor ID is required", 'error');
+        return;
+      }
+
+      const result = await apiCall('/login-doctor/', 'POST', {
+        doctor_id
+      });
+
+      if (result.success) {
+        currentDoctor = result.doctor_data;
+        showDoctorDashboard();
+      } else {
+        showAlert(result.error, 'error');
+      }
+    }
+
+    function showDoctorDashboard() {
+      showModule("doctorDashboard");
+      document.getElementById("doctorProfile").innerHTML = `
+        <p><b>Name:</b> ${currentDoctor.name}</p>
+        <p><b>Specialization:</b> ${currentDoctor.specialization}</p>
+        <p><b>Hospital:</b> ${currentDoctor.hospital}</p>
+        <p><b>ID:</b> ${currentDoctor.id}</p>
+      `;
+      renderDoctorFiles();
+    }
+
+    function renderDoctorFiles() {
+      let list = document.getElementById("doctorFiles");
+      list.innerHTML = "<p>Files will be loaded from backend</p>";
+    }
+
+    // Worker Functions
+    async function registerWorker() {
+      const name = document.getElementById("workerName").value.trim();
+      const phone = document.getElementById("workerPhone").value.trim();
+
+      if (!name || !phone) {
+        showAlert("Please fill all required fields (Name and Phone)", 'error');
+        return;
+      }
+
+      if (phone.length !== 10 || isNaN(phone)) {
+        showAlert("Phone number must be exactly 10 digits", 'error');
+        return;
+      }
+
+      const result = await apiCall('/register-worker/', 'POST', {
+        name, phone
+      });
+
+      if (result.success) {
+        showAlert(result.message);
+        document.getElementById("workerName").value = "";
+        document.getElementById("workerPhone").value = "";
+        showModule("workerLogin");
+      } else {
+        showAlert(result.error, 'error');
+      }
+    }
+
+    async function workerLogin() {
+      const worker_id = document.getElementById("loginWorkerID").value.trim();
+
+      if (!worker_id) {
+        showAlert("Worker ID is required", 'error');
+        return;
+      }
+
+      const result = await apiCall('/login-worker/', 'POST', {
+        worker_id
+      });
+
+      if (result.success) {
+        currentWorker = result.worker_data;
+        showWorkerDashboard();
+      } else {
+        showAlert(result.error, 'error');
+      }
+    }
+
+    function showWorkerDashboard() {
+      showModule("workerDashboard");
+      document.getElementById("workerProfile").innerHTML = `
+        <p><b>Name:</b> ${currentWorker.name}</p>
+        <p><b>Phone:</b> ${currentWorker.phone}</p>
+        <p><b>ID:</b> ${currentWorker.id}</p>
+      `;
+      renderWorkerFiles();
+    }
+
+    function renderWorkerFiles() {
+      let list = document.getElementById("workerFiles");
+      list.innerHTML = "<p>Files will be loaded from backend</p>";
+    }
+
+    // File handling functions
+    function viewFile(file) {
+      const modal = document.getElementById("fileModal");
+      const fileContent = document.getElementById("fileContent");
+      fileContent.innerHTML = "";
+      
+      if (file.data_url) {
+        if (file.type.startsWith("image/")) {
+          fileContent.innerHTML = `<img src="${file.data_url}" alt="${file.name}">`;
+        } else if (file.type === "application/pdf") {
+          fileContent.innerHTML = `<iframe src="${file.data_url}" title="${file.name}"></iframe>`;
+        } else {
+          const a = document.createElement("a");
+          a.href = file.data_url;
+          a.download = file.name;
+          a.click();
+          return;
+        }
+        modal.style.display = "flex";
+      } else {
+        showAlert("File content not available", 'error');
+      }
+    }
+
+    function closeFileModal() {
+      document.getElementById("fileModal").style.display = "none";
+      document.getElementById("fileContent").innerHTML = "";
+    }
+
+    // File upload for patients
+    document.getElementById("patientUploadArea").addEventListener("click", () => {
+      document.getElementById("patientFileInput").click();
+    });
+
+    document.getElementById("patientFileInput").addEventListener("change", async (e) => {
+      if (!currentPatient) {
+        showAlert("Please login first", 'error');
+        return;
+      }
+
+      let files = Array.from(e.target.files);
+      
+      for (let file of files) {
+        const reader = new FileReader();
+        reader.onload = async (ev) => {
+          const result = await apiCall('/upload-file/', 'POST', {
+            patient_aadhar: currentPatient.aadhar,
+            file_name: file.name,
+            file_data: ev.target.result,
+            file_type: file.type,
+            file_size: file.size,
+            uploader_type: 'patient',
+            uploader_id: currentPatient.aadhar
+          });
+
+          if (result.success) {
+            showAlert('File uploaded successfully');
+            loadPatientFiles();
+          } else {
+            showAlert(result.error, 'error');
+          }
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // Appointment booking
+   async function bookAppointment() {
+  try {
+    // Check patient login
+    if (!currentPatient || !currentPatient.aadhar) {
+      showAlert("❌ Please login as patient first", "error");
+      return;
+    }
+
+    // Get form values safely
+    const hospitalEl = document.getElementById("hospitalSelect");
+    const doctorEl = document.getElementById("doctorSelect");
+    const dateEl = document.getElementById("appointmentDate");
+    const timeEl = document.getElementById("appointmentTime");
+
+    if (!hospitalEl || !doctorEl || !dateEl || !timeEl) {
+      showAlert("⚠️ Appointment form is incomplete in HTML (missing fields).", "error");
+      console.error("Form elements missing", {
+        hospitalEl,
+        doctorEl,
+        dateEl,
+        timeEl
+      });
+      return;
+    }
+
+    const hospital = hospitalEl.value.trim();
+    const doctor = doctorEl.value.trim();
+    const date = dateEl.value.trim();
+    const time = timeEl.value.trim();
+
+    // Validate user input
+    if (!hospital || !doctor || !date || !time) {
+      showAlert("⚠️ Please fill all fields before booking.", "error");
+      return;
+    }
+
+    // Prepare request data
+    const requestData = {
+      patient_aadhar: currentPatient.aadhar,
+      hospital,
+      doctor_name: doctor,
+      appointment_date: date,
+      appointment_time: time,
+    };
+
+    console.log("📤 Booking Request:", requestData);
+
+    // Send API request
+    const result = await apiCall("/book-appointment/", "POST", requestData);
+
+    console.log("📥 API Response:", result);
+
+    // Handle API response
+    if (result && result.success) {
+      showAlert(
+        `✅ Appointment Booked!\n\nHospital: ${hospital}\nDoctor: ${doctor}\nDate: ${date}\nTime: ${time}\n\nYour Appointment Code: ${result.appointment_code}`
+      );
+      if (typeof closeAppointmentPopup === "function") {
+        closeAppointmentPopup();
+      }
+    } else {
+      showAlert(result?.error || "❌ Failed to book appointment. Try again.", "error");
+    }
+  } catch (err) {
+    console.error("❌ Error booking appointment:", err);
+    showAlert("Unexpected error occurred while booking appointment.", "error");
+  }
+}
+
+
+    // QR Scanner functions
+    async function startDoctorScan() {
+      document.getElementById("reader").style.display = "block";
+      document.getElementById("doctorStopBtn").style.display = "inline-block";
+      
+      if (scanner) { scanner.clear(); }
+      scanner = new Html5Qrcode("reader");
+      
+      scanner.start(
+        { facingMode: "environment" },
+        { fps: 10, qrbox: 250 },
+        async (decodedText) => {
+          try {
+            let data = JSON.parse(decodedText);
+            const result = await apiCall(`/verify-patient/${data.aadhar}/`);
+            
+            if (result.success) {
+              currentPatient = result.patient_data;
+              stopDoctorScan();
+              showPatientDashboard();
+            } else {
+              showAlert("Patient not found!", 'error');
+            }
+          } catch (e) {
+            showAlert("Invalid QR", 'error');
+            stopDoctorScan();
+          }
+        },
+        (error) => {
+          console.error("QR scan error:", error);
+        }
+      );
+    }
+
+    function stopDoctorScan() {
+      if (scanner) {
+        scanner.stop().then(() => {
+          document.getElementById("reader").style.display = "none";
+          document.getElementById("doctorStopBtn").style.display = "none";
+        }).catch(err => {
+          console.error("Error stopping doctor scanner:", err);
+        });
+      }
+    }
+
+    async function startWorkerScan() {
+      document.getElementById("workerReader").style.display = "block";
+      document.getElementById("workerStopBtn").style.display = "inline-block";
+      
+      if (workerScanner) { workerScanner.clear(); }
+      workerScanner = new Html5Qrcode("workerReader");
+      
+      workerScanner.start(
+        { facingMode: "environment" },
+        { fps: 10, qrbox: 250 },
+        async (decodedText) => {
+          try {
+            let data = JSON.parse(decodedText);
+            const result = await apiCall(`/verify-patient/${data.aadhar}/`);
+            
+            if (result.success) {
+              currentPatient = result.patient_data;
+              stopWorkerScan();
+              showPatientDashboard();
+            } else {
+              showAlert("Patient not found!", 'error');
+            }
+          } catch (e) {
+            showAlert("Invalid QR", 'error');
+            stopWorkerScan();
+          }
+        },
+        (error) => {
+          console.error("Worker QR scan error:", error);
+        }
+      );
+    }
+
+    function stopWorkerScan() {
+      if (workerScanner) {
+        workerScanner.stop().then(() => {
+          document.getElementById("workerReader").style.display = "none";
+          document.getElementById("workerStopBtn").style.display = "none";
+        }).catch(err => {
+          console.error("Error stopping worker scanner:", err);
+        });
+      }
+    }
+
+    // Event listeners
+    document.getElementById("patientSearch").addEventListener("input", loadPatientFiles);
+    document.getElementById("patientFilter").addEventListener("change", loadPatientFiles);
+
+    // Contact and Team functions
+    function openContact() {
+      document.getElementById('contactPopup').style.display = 'block';
+      document.getElementById('overlay').style.display = 'block';
+    }
+
+    function closeContact() {
+      document.getElementById('contactPopup').style.display = 'none';
+      document.getElementById('overlay').style.display = 'none';
+    }
+
+    function submitContact() {
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+      
+      if (name && email && message) {
+        showAlert(`Thank you, ${name}! Your message has been submitted.`);
+        closeContact();
+      } else {
+        showAlert('Please fill all fields.', 'error');
+      }
+    }
+
+    function openAppointmentPopup() {
+      document.getElementById("appointmentPopup").style.display = "block";
+      document.getElementById("overlay").style.display = "block";
+    }
+
+    function closeAppointmentPopup() {
+      document.getElementById("appointmentPopup").style.display = "none";
+      document.getElementById("overlay").style.display = "none";
+    }
+
+    function loadDoctors() {
+      // This function can be implemented later with dynamic doctor loading
+    }
+
+    // Team modal
+    function showTeam() {
+      document.getElementById("teamModal").style.display = "block";
+    }
+
+    var modal = document.getElementById("teamModal");
+    var span = document.getElementsByClassName("close")[0];
+
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+
+  </script>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      let interval = setInterval(() => {
+        let logo = document.querySelector(".goog-logo-link");
+        let text = document.querySelector(".goog-te-gadget span");
+        if (logo) logo.style.display = "none";
+        if (text) text.style.display = "none";
+      }, 500);
+
+      setTimeout(() => clearInterval(interval), 5000);
+    });
+  </script>
+  
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement(
+        {
+          pageLanguage: 'en',
+          includedLanguages: 'ml,hi,ta,te,en',
+          layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
+        }, 
+        'google_translate_element'
+      );
+    }
+  </script>
+
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script>
+function showModule(moduleId) {
+    // Hide all other modules if needed (optional)
+    const modules = document.querySelectorAll('.module');
+    modules.forEach(mod => {
+        if (mod.id !== moduleId) mod.style.display = 'none';
+    });
+
+    // Show the selected module
+    const selected = document.getElementById(moduleId);
+    if (selected) selected.style.display = 'block';
+
+    // Scroll smoothly to the module
+    selected.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// On page load, optionally hide modules
+window.onload = function() {
+    const modules = document.querySelectorAll('.module');
+    modules.forEach(mod => mod.style.display = 'none');
+};
+</script>
+
+
+</body>
+</html>

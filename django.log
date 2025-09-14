@@ -1,0 +1,706 @@
+Watching for file changes with StatReloader
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/user/.local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/user/.local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/user/myproject/health/views.py", line 11, in index
+    return render(request, 'health/index.html')
+  File "/home/user/.local/lib/python3.10/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/user/.local/lib/python3.10/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/user/.local/lib/python3.10/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: health/index.html
+"GET / HTTP/1.1" 500 82935
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/user/.local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/user/.local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/user/myproject/health/views.py", line 11, in index
+    return render(request, 'health/index.html')
+  File "/home/user/.local/lib/python3.10/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/user/.local/lib/python3.10/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/user/.local/lib/python3.10/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: health/index.html
+"GET / HTTP/1.1" 500 82786
+Not Found: /favicon.ico
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/user/.local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/user/.local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/user/myproject/health/views.py", line 11, in index
+    return render(request, 'health/index.html')
+  File "/home/user/.local/lib/python3.10/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/user/.local/lib/python3.10/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/user/.local/lib/python3.10/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: health/index.html
+"GET / HTTP/1.1" 500 82786
+Not Found: /favicon.ico
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 48648
+Not Found: /favicon.ico
+"GET /admin HTTP/1.1" 301 0
+"GET /admin/ HTTP/1.1" 302 0
+"GET /admin/login/?next=/admin/ HTTP/1.1" 200 4190
+"GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2808
+"GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+"GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+"GET /static/admin/css/base.css HTTP/1.1" 200 22120
+"GET /static/admin/css/responsive.css HTTP/1.1" 200 16565
+"GET /static/admin/css/login.css HTTP/1.1" 200 951
+"GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+Not Found: /favicon.ico
+"POST /admin/login/?next=/admin/ HTTP/1.1" 200 4358
+"POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+"GET /admin/ HTTP/1.1" 200 9697
+"GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+"GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+"GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+"GET /admin/health/patient/ HTTP/1.1" 200 11564
+"GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+"GET /static/admin/css/changelists.css HTTP/1.1" 200 6878
+"GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+"GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 9777
+"GET /static/admin/js/core.js HTTP/1.1" 200 6208
+"GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+"GET /static/admin/js/actions.js HTTP/1.1" 200 8076
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 285314
+"GET /static/admin/js/filters.js HTTP/1.1" 200 978
+"GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+"GET /static/admin/img/search.svg HTTP/1.1" 200 458
+"GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 581
+"GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 48648
+Not Found: /favicon.ico
+"POST /api/register-patient/ HTTP/1.1" 200 161
+"GET /admin HTTP/1.1" 301 0
+"GET /admin/ HTTP/1.1" 200 9697
+"GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+"GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+Not Found: /favicon.ico
+"GET /admin/health/patient/ HTTP/1.1" 200 13851
+"GET /static/admin/css/changelists.css HTTP/1.1" 200 6878
+"GET /static/admin/js/core.js HTTP/1.1" 200 6208
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+"GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 9777
+"GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+"GET /static/admin/js/actions.js HTTP/1.1" 200 8076
+"GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+"GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 285314
+"GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+"GET /static/admin/js/filters.js HTTP/1.1" 200 978
+"GET /static/admin/img/search.svg HTTP/1.1" 200 458
+"GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+"GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 581
+"GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1097
+"GET /admin/health/appointment/ HTTP/1.1" 200 12803
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/health/healthworker/ HTTP/1.1" 200 11604
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/health/medicalfile/ HTTP/1.1" 200 12191
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/health/patient/ HTTP/1.1" 200 13851
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/health/patient/121212121212/change/ HTTP/1.1" 200 13978
+"GET /static/admin/css/forms.css HTTP/1.1" 200 8525
+"GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+"GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/css/widgets.css HTTP/1.1" 200 11991
+Not Found: /favicon.ico
+"GET /admin/health/medicalfile/ HTTP/1.1" 200 12191
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/health/doctor/ HTTP/1.1" 200 13439
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /api/register-doctor/ HTTP/1.1" 200 225
+"POST /api/login-doctor/ HTTP/1.1" 200 143
+"GET /admin/health/doctor/ HTTP/1.1" 200 15887
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+Not Found: /favicon.ico
+"GET /admin/health/doctor/ HTTP/1.1" 200 15887
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/health/doctor/?o=5 HTTP/1.1" 200 16190
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/health/doctor/?o=-5 HTTP/1.1" 200 16225
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /api/register-patient/ HTTP/1.1" 200 161
+"GET / HTTP/1.1" 200 49079
+"POST /api/register-patient/ HTTP/1.1" 200 161
+"GET / HTTP/1.1" 200 49079
+"GET /admin/health/doctor/?o=-5 HTTP/1.1" 200 16225
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+Not Found: /favicon.ico
+"GET /admin/health/patient/ HTTP/1.1" 200 14790
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /api/register-patient/ HTTP/1.1" 200 161
+"GET / HTTP/1.1" 200 49079
+"GET /admin HTTP/1.1" 301 0
+"GET /admin/ HTTP/1.1" 200 9697
+"GET / HTTP/1.1" 200 49118
+Not Found: /favicon.ico
+"POST /api/register-patient/ HTTP/1.1" 200 70
+"POST /api/register-patient/ HTTP/1.1" 200 161
+"POST /api/login-patient/ HTTP/1.1" 200 115
+"GET /api/patient-files/121212121213/ HTTP/1.1" 200 30
+"GET /admin HTTP/1.1" 301 0
+"GET /admin/ HTTP/1.1" 200 9697
+"GET /admin/health/patient/ HTTP/1.1" 200 15728
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+Not Found: /favicon.ico
+"GET / HTTP/1.1" 200 48973
+Not Found: /favicon.ico
+"GET / HTTP/1.1" 200 49540
+Not Found: /favicon.ico
+"GET / HTTP/1.1" 200 49482
+Not Found: /favicon.ico
+"GET / HTTP/1.1" 200 49670
+Not Found: /favicon.ico
+"GET / HTTP/1.1" 200 49766
+Not Found: /favicon.ico
+"GET / HTTP/1.1" 200 49982
+"GET / HTTP/1.1" 200 50697
+"GET / HTTP/1.1" 200 50957
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 50957
+Not Found: /favicon.ico
+"GET / HTTP/1.1" 200 50957
+"GET / HTTP/1.1" 200 50832
+Not Found: /media/team_images/member1.jpeg
+"GET /media/team_images/member1.jpeg HTTP/1.1" 404 5304
+Not Found: /media/team_images/member1.jpeg
+"GET /media/team_images/member1.jpeg HTTP/1.1" 404 5304
+Not Found: /favicon.ico
+"GET / HTTP/1.1" 200 50832
+Not Found: /media/team_images/member1.jpeg
+"GET /media/team_images/member1.jpeg HTTP/1.1" 404 5304
+Not Found: /media/team_images/member1.jpeg
+"GET /media/team_images/member1.jpeg HTTP/1.1" 404 5304
+Not Found: /favicon.ico
+"GET / HTTP/1.1" 200 50832
+Not Found: /media/team_images/member1.jpeg
+"GET /media/team_images/member1.jpeg HTTP/1.1" 404 5304
+Not Found: /media/team_images/member1.jpeg
+"GET /media/team_images/member1.jpeg HTTP/1.1" 404 5304
+"GET / HTTP/1.1" 200 50831
+Not Found: /media/team_images/member1.jpg
+"GET /media/team_images/member1.jpg HTTP/1.1" 404 5301
+Not Found: /media/team_images/member1.jpg
+"GET /media/team_images/member1.jpg HTTP/1.1" 404 5301
+Not Found: /favicon.ico
+"GET / HTTP/1.1" 200 50817
+Not Found: /media/team_images/member1.jpg
+"GET /media/team_images/member1.jpg HTTP/1.1" 404 5301
+Not Found: /media/team_images/member1.jpg
+"GET /media/team_images/member1.jpg HTTP/1.1" 404 5301
+Not Found: /favicon.ico
+"GET / HTTP/1.1" 200 50799
+Not Found: /member1.jpg
+"GET /member1.jpg HTTP/1.1" 404 5247
+Not Found: /member1.jpg
+"GET /member1.jpg HTTP/1.1" 404 5247
+Not Found: /favicon.ico
+/home/user/myproject/myproject/settings.py changed, reloading.
+Watching for file changes with StatReloader
+/home/user/myproject/myproject/urls.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 50817
+"GET /media/team_images/member1.jpg HTTP/1.1" 200 63888
+Not Found: /favicon.ico
+"GET / HTTP/1.1" 200 50875
+"GET /media/team_images/member3.jpg HTTP/1.1" 200 50504
+"GET /media/team_images/member2.jpg HTTP/1.1" 200 125926
+Not Found: /favicon.ico
+"GET / HTTP/1.1" 200 50875
+"GET /media/team_images/member1.jpg HTTP/1.1" 200 63888
+Not Found: /favicon.ico
+"GET / HTTP/1.1" 200 50875
+Not Found: /favicon.ico
+"GET / HTTP/1.1" 200 51071
+Not Found: /media/team_images/member4.jpg
+"GET /media/team_images/member4.jpg HTTP/1.1" 404 5682
+Not Found: /media/team_images/member6.jpg
+"GET /media/team_images/member6.jpg HTTP/1.1" 404 5682
+"GET /media/team_images/member5.jpg HTTP/1.1" 200 86725
+Not Found: /media/team_images/member4.jpg
+"GET /media/team_images/member4.jpg HTTP/1.1" 404 5682
+Not Found: /media/team_images/member6.jpg
+"GET /media/team_images/member6.jpg HTTP/1.1" 404 5682
+"GET /media/team_images/member2.jpg HTTP/1.1" 200 102849
+"GET /media/team_images/member1.jpg HTTP/1.1" 200 63888
+"GET /media/team_images/member3.jpg HTTP/1.1" 304 0
+Not Found: /favicon.ico
+"GET / HTTP/1.1" 200 51071
+Not Found: /media/team_images/member4.jpg
+Not Found: /media/team_images/member6.jpg
+"GET /media/team_images/member6.jpg HTTP/1.1" 404 5682
+"GET /media/team_images/member4.jpg HTTP/1.1" 404 5682
+Not Found: /media/team_images/member4.jpg
+Not Found: /media/team_images/member6.jpg
+Not Found: /media/team_images/member2.jpg
+"GET /media/team_images/member6.jpg HTTP/1.1" 404 5682
+"GET /media/team_images/member2.jpg HTTP/1.1" 404 5682
+"GET /media/team_images/member4.jpg HTTP/1.1" 404 5682
+"GET /media/team_images/member5.jpg HTTP/1.1" 200 117061
+Not Found: /favicon.ico
+"GET / HTTP/1.1" 200 51071
+"GET /media/team_images/member2.jpg HTTP/1.1" 200 102508
+"GET /media/team_images/member4.jpg HTTP/1.1" 200 46745
+Not Found: /media/team_images/member6.jpg
+"GET /media/team_images/member6.jpg HTTP/1.1" 404 5682
+"GET /media/team_images/member5.jpg HTTP/1.1" 304 0
+"GET /media/team_images/member1.jpg HTTP/1.1" 200 63888
+"GET /media/team_images/member3.jpg HTTP/1.1" 200 50504
+Not Found: /favicon.ico
+"POST /api/register-patient/ HTTP/1.1" 200 161
+"POST /api/login-patient/ HTTP/1.1" 200 85
+"POST /api/login-patient/ HTTP/1.1" 200 85
+"POST /api/login-patient/ HTTP/1.1" 200 85
+"POST /api/login-patient/ HTTP/1.1" 200 85
+"POST /api/login-patient/ HTTP/1.1" 200 85
+"POST /api/register-worker/ HTTP/1.1" 200 181
+"POST /api/login-worker/ HTTP/1.1" 200 92
+"GET / HTTP/1.1" 200 51071
+Not Found: /media/team_images/member6.jpg
+"GET /media/team_images/member6.jpg HTTP/1.1" 404 5682
+"GET /media/team_images/member1.jpg HTTP/1.1" 304 0
+Not Found: /media/team_images/member5.jpg
+"GET /media/team_images/member5.jpg HTTP/1.1" 404 5682
+"GET /media/team_images/member4.jpg HTTP/1.1" 304 0
+"GET /media/team_images/member2.jpg HTTP/1.1" 200 1152340
+"GET /media/team_images/member3.jpg HTTP/1.1" 200 1134295
+Not Found: /favicon.ico
+"POST /api/register-doctor/ HTTP/1.1" 200 238
+"POST /api/login-doctor/ HTTP/1.1" 200 156
+"GET / HTTP/1.1" 200 51071
+Not Found: /media/team_images/member5.jpg
+"GET /media/team_images/member5.jpg HTTP/1.1" 404 5682
+Not Found: /media/team_images/member6.jpg
+"GET /media/team_images/member6.jpg HTTP/1.1" 404 5682
+Not Found: /media/team_images/member5.jpg
+Not Found: /media/team_images/member6.jpg
+"GET /media/team_images/member5.jpg HTTP/1.1" 404 5682
+"GET /media/team_images/member6.jpg HTTP/1.1" 404 5682
+"GET /admin HTTP/1.1" 301 0
+"GET /admin/ HTTP/1.1" 200 9697
+"GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+"GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+"GET /admin/health/patient/ HTTP/1.1" 200 16197
+"GET /static/admin/img/search.svg HTTP/1.1" 200 458
+"GET /static/admin/js/filters.js HTTP/1.1" 200 978
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+"GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1097
+"GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 581
+Not Found: /favicon.ico
+"GET /admin/health/patient/123123123123/change/ HTTP/1.1" 200 13978
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+"GET /admin/health/patient/123123123123/delete/ HTTP/1.1" 200 10062
+"GET /static/admin/js/cancel.js HTTP/1.1" 200 884
+"POST /admin/health/patient/123123123123/delete/ HTTP/1.1" 302 0
+"GET /admin/health/patient/ HTTP/1.1" 200 15897
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+"GET /admin/health/patient/123123234234/change/ HTTP/1.1" 200 13978
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/health/patient/123123234234/delete/ HTTP/1.1" 200 10062
+"POST /admin/health/patient/123123234234/delete/ HTTP/1.1" 302 0
+"GET /admin/health/patient/ HTTP/1.1" 200 15428
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/health/patient/123123234123/change/ HTTP/1.1" 200 13978
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/health/patient/123123234123/delete/ HTTP/1.1" 200 10062
+"POST /admin/health/patient/123123234123/delete/ HTTP/1.1" 302 0
+"GET /admin/health/patient/ HTTP/1.1" 200 14959
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/health/patient/121212121213/change/ HTTP/1.1" 200 13978
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/health/patient/121212121213/delete/ HTTP/1.1" 200 10062
+"POST /admin/health/patient/121212121213/delete/ HTTP/1.1" 302 0
+"GET /admin/health/patient/ HTTP/1.1" 200 14490
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET / HTTP/1.1" 200 51080
+Not Found: /media/team_images/member6.jpg
+Not Found: /media/team_images/member5.jpg
+"GET /media/team_images/member6.jpg HTTP/1.1" 404 5682
+"GET /media/team_images/member5.jpg HTTP/1.1" 404 5682
+"GET /media/team_images/member2.jpg HTTP/1.1" 304 0
+"GET /media/team_images/member3.jpg HTTP/1.1" 304 0
+"GET /media/team_images/member4.jpg HTTP/1.1" 200 46745
+Not Found: /media/team_images/member5.jpg
+"GET /media/team_images/member5.jpg HTTP/1.1" 404 5682
+Not Found: /media/team_images/member6.jpg
+"GET /media/team_images/member6.jpg HTTP/1.1" 404 5682
+"GET / HTTP/1.1" 200 51080
+Not Found: /media/team_images/member5.jpg
+Not Found: /media/team_images/member6.jpg
+"GET /media/team_images/member5.jpg HTTP/1.1" 404 5682
+"GET /media/team_images/member6.jpg HTTP/1.1" 404 5682
+Not Found: /media/team_images/member6.jpg
+"GET /media/team_images/member6.jpg HTTP/1.1" 404 5682
+Not Found: /media/team_images/member5.jpg
+"GET /media/team_images/member5.jpg HTTP/1.1" 404 5682
+"GET / HTTP/1.1" 200 51071
+Not Found: /media/team_images/member6.jpg
+Not Found: /media/team_images/member5.jpg
+"GET /media/team_images/member6.jpg HTTP/1.1" 404 5682
+"GET /media/team_images/member5.jpg HTTP/1.1" 404 5682
+Not Found: /media/team_images/member5.jpg
+Not Found: /media/team_images/member6.jpg
+"GET /media/team_images/member6.jpg HTTP/1.1" 404 5682
+"GET /media/team_images/member5.jpg HTTP/1.1" 404 5682
+"GET / HTTP/1.1" 200 51071
+Not Found: /media/team_images/member5.jpg
+Not Found: /media/team_images/member6.jpg
+"GET /media/team_images/member5.jpg HTTP/1.1" 404 5682
+"GET /media/team_images/member6.jpg HTTP/1.1" 404 5682
+Not Found: /media/team_images/member6.jpg
+Not Found: /media/team_images/member5.jpg
+"GET /media/team_images/member5.jpg HTTP/1.1" 404 5682
+"GET /media/team_images/member6.jpg HTTP/1.1" 404 5682
+"GET / HTTP/1.1" 200 51139
+Not Found: /media/team_images/member6.jpg
+Not Found: /media/team_images/member5.jpg
+"GET /media/team_images/member5.jpg HTTP/1.1" 404 5682
+"GET /media/team_images/member6.jpg HTTP/1.1" 404 5682
+Not Found: /media/team_images/member5.jpg
+"GET /media/team_images/member5.jpg HTTP/1.1" 404 5682
+Not Found: /media/team_images/member6.jpg
+"GET /media/team_images/member6.jpg HTTP/1.1" 404 5682
+"GET /media/team_images/member1.jpg HTTP/1.1" 304 0
+"GET /media/team_images/member2.jpg HTTP/1.1" 304 0
+"GET /media/team_images/member3.jpg HTTP/1.1" 304 0
+Not Found: /login-patient/
+"POST /login-patient/ HTTP/1.1" 404 5426
+Not Found: /login-patient/
+"POST /login-patient/ HTTP/1.1" 404 5426
+Not Found: /login-patient/
+"POST /login-patient/ HTTP/1.1" 404 5426
+Not Found: /login-patient/
+"POST /login-patient/ HTTP/1.1" 404 5426
+Not Found: /login-patient/
+"POST /login-patient/ HTTP/1.1" 404 5426
+Not Found: /login-patient/
+"POST /login-patient/ HTTP/1.1" 404 5426
+"GET / HTTP/1.1" 200 51139
+Not Found: /media/team_images/member5.jpg
+Not Found: /media/team_images/member6.jpg
+"GET /media/team_images/member5.jpg HTTP/1.1" 404 5682
+"GET /media/team_images/member6.jpg HTTP/1.1" 404 5682
+Not Found: /media/team_images/member5.jpg
+"GET /media/team_images/member4.jpg HTTP/1.1" 200 46745
+"GET /media/team_images/member5.jpg HTTP/1.1" 404 5682
+Not Found: /media/team_images/member6.jpg
+"GET /media/team_images/member6.jpg HTTP/1.1" 404 5682
+Not Found: /favicon.ico
+"GET /admin HTTP/1.1" 301 0
+"GET /admin/ HTTP/1.1" 200 11002
+"GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 200 392
+"GET /admin/health/patient/ HTTP/1.1" 200 14321
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+Not Found: /favicon.ico
+"GET /admin/health/patient/111111222222/change/ HTTP/1.1" 200 13978
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/health/patient/111111222222/delete/ HTTP/1.1" 200 10062
+Not Found: /favicon.ico
+"POST /admin/health/patient/111111222222/delete/ HTTP/1.1" 302 0
+"GET /admin/health/patient/ HTTP/1.1" 200 14020
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/health/patient/121212121212/change/ HTTP/1.1" 200 13978
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/health/patient/121212121212/delete/ HTTP/1.1" 200 10062
+Not Found: /favicon.ico
+"POST /admin/health/patient/121212121212/delete/ HTTP/1.1" 302 0
+"GET /admin/health/patient/ HTTP/1.1" 200 11733
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+Not Found: /favicon.ico
+"GET /admin/health/medicalfile/ HTTP/1.1" 200 12191
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/health/healthworker/ HTTP/1.1" 200 13724
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+Not Found: /favicon.ico
+"GET /admin/health/doctor/ HTTP/1.1" 200 16531
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/health/appointment/ HTTP/1.1" 200 12803
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+Not Found: /favicon.ico
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 51072
+"GET /media/team_images/member3.jpg HTTP/1.1" 304 0
+"GET /media/team_images/member4.jpg HTTP/1.1" 304 0
+"GET /media/team_images/member1.jpg HTTP/1.1" 304 0
+"GET /media/team_images/member2.jpg HTTP/1.1" 304 0
+Not Found: /media/team_images/member5.jpg
+"GET /media/team_images/member5.jpg HTTP/1.1" 404 5682
+Not Found: /media/team_images/member6.jpg
+"GET /media/team_images/member6.jpg HTTP/1.1" 404 5682
+Not Found: /favicon.ico
+"GET / HTTP/1.1" 200 51072
+Not Found: /media/team_images/member6.jpg
+Not Found: /media/team_images/member5.jpg
+"GET /media/team_images/member6.jpg HTTP/1.1" 404 5682
+"GET /media/team_images/member5.jpg HTTP/1.1" 404 5682
+"GET / HTTP/1.1" 200 51027
+Not Found: /media/team_images/member6.jpg
+Not Found: /media/team_images/member5.jpg
+"GET /media/team_images/member6.jpg HTTP/1.1" 404 5682
+"GET /media/team_images/member5.jpg HTTP/1.1" 404 5682
+Not Found: /favicon.ico
+"POST /api/register-patient/ HTTP/1.1" 200 161
+"POST /api/register-patient/ HTTP/1.1" 200 70
+"POST /api/register-patient/ HTTP/1.1" 200 70
+"POST /api/register-patient/ HTTP/1.1" 200 70
+"POST /api/register-patient/ HTTP/1.1" 200 70
+"POST /api/register-patient/ HTTP/1.1" 200 70
+"POST /api/register-patient/ HTTP/1.1" 200 70
+"POST /api/register-patient/ HTTP/1.1" 200 70
+"POST /api/register-patient/ HTTP/1.1" 200 70
+"POST /api/register-patient/ HTTP/1.1" 200 70
+"POST /api/register-patient/ HTTP/1.1" 200 70
+"POST /api/register-patient/ HTTP/1.1" 200 70
+"POST /api/register-patient/ HTTP/1.1" 200 70
+"POST /api/register-patient/ HTTP/1.1" 200 70
+"POST /api/register-patient/ HTTP/1.1" 200 161
+"POST /api/login-patient/ HTTP/1.1" 200 58
+"POST /api/login-patient/ HTTP/1.1" 200 58
+"POST /api/login-patient/ HTTP/1.1" 200 58
+"GET / HTTP/1.1" 200 51069
+Not Found: /media/team_images/member5.jpg
+"GET /media/team_images/member5.jpg HTTP/1.1" 404 5682
+Not Found: /media/team_images/member6.jpg
+"GET /media/team_images/member6.jpg HTTP/1.1" 404 5682
+Not Found: /media/team_images/member6.jpg
+"GET /media/team_images/member6.jpg HTTP/1.1" 404 5682
+Not Found: /media/team_images/member5.jpg
+"GET /media/team_images/member5.jpg HTTP/1.1" 404 5682
+Not Found: /favicon.ico
+"GET / HTTP/1.1" 200 51069
+Not Found: /media/team_images/member5.jpg
+Not Found: /media/team_images/member6.jpg
+"GET /media/team_images/member5.jpg HTTP/1.1" 404 5682
+"GET /media/team_images/member6.jpg HTTP/1.1" 404 5682
+Not Found: /media/team_images/member6.jpg
+Not Found: /media/team_images/member5.jpg
+"GET /media/team_images/member6.jpg HTTP/1.1" 404 5682
+"GET /media/team_images/member3.jpg HTTP/1.1" 304 0
+"GET /media/team_images/member5.jpg HTTP/1.1" 404 5682
+Not Found: /favicon.ico
+"GET / HTTP/1.1" 200 51069
+Not Found: /media/team_images/member6.jpg
+"GET /media/team_images/member6.jpg HTTP/1.1" 404 5682
+"GET /media/team_images/member5.jpg HTTP/1.1" 200 1110166
+Not Found: /media/team_images/member6.jpg
+"GET /media/team_images/member6.jpg HTTP/1.1" 404 5682
+Not Found: /favicon.ico
+"GET /admin HTTP/1.1" 301 0
+"GET /admin/ HTTP/1.1" 200 11638
+"GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+"GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+"GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 200 392
+"GET /admin/health/patient/ HTTP/1.1" 200 14321
+"GET /static/admin/img/search.svg HTTP/1.1" 200 458
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+"GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1097
+"GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 581
+Not Found: /favicon.ico
+"GET /admin/health/patient/123432123432/change/ HTTP/1.1" 200 13978
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/health/patient/123432123432/delete/ HTTP/1.1" 200 10062
+"POST /admin/health/patient/123432123432/delete/ HTTP/1.1" 302 0
+"GET /admin/health/patient/ HTTP/1.1" 200 14020
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+"GET /admin/health/medicalfile/ HTTP/1.1" 200 12191
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET / HTTP/1.1" 200 51146
+Not Found: /media/team_images/member6.jpg
+"GET /media/team_images/member6.jpg HTTP/1.1" 404 5682
+Not Found: /media/team_images/member6.jpg
+"GET /media/team_images/member6.jpg HTTP/1.1" 404 5682
+"GET /media/team_images/member2.jpg HTTP/1.1" 304 0
+"GET /media/team_images/member3.jpg HTTP/1.1" 304 0
+"GET /media/team_images/member1.jpg HTTP/1.1" 200 63888
+"GET /media/team_images/member4.jpg HTTP/1.1" 304 0
+"GET /media/team_images/final.png HTTP/1.1" 200 246383
+"GET / HTTP/1.1" 200 52891
+Not Found: /media/team_images/member6.jpg
+"GET /media/team_images/member6.jpg HTTP/1.1" 404 5682
+"GET /media/team_images/member5.jpg HTTP/1.1" 304 0
+"GET / HTTP/1.1" 200 52885
+Not Found: /media/team_images/member6.jpg
+"GET /media/team_images/member6.jpg HTTP/1.1" 404 5682
+Not Found: /media/team_images/member6.jpg
+"GET /media/team_images/member6.jpg HTTP/1.1" 404 5682
+"GET / HTTP/1.1" 200 52885
+Not Found: /media/team_images/member6.jpg
+"GET /media/team_images/member6.jpg HTTP/1.1" 404 5682
+Not Found: /media/team_images/member6.jpg
+"GET /media/team_images/member6.jpg HTTP/1.1" 404 5682
+Not Found: /media/team_images/final.png
+"GET / HTTP/1.1" 200 52885
+Not Found: /media/team_images/member6.jpg
+"GET /media/team_images/member6.jpg HTTP/1.1" 404 5682
+Not Found: /media/team_images/member6.jpg
+"GET /media/team_images/member6.jpg HTTP/1.1" 404 5682
+Not Found: /media/team_images/final.png
+"GET / HTTP/1.1" 200 52885
+Not Found: /media/team_images/member6.jpg
+"GET /media/team_images/member6.jpg HTTP/1.1" 404 5682
+Not Found: /media/team_images/member6.jpg
+"GET /media/team_images/member6.jpg HTTP/1.1" 404 5682
+"GET /media/team_images/member4.jpg HTTP/1.1" 200 46745
+"GET / HTTP/1.1" 200 52885
+Not Found: /media/team_images/member6.jpg
+"GET /media/team_images/member6.jpg HTTP/1.1" 404 5682
+Not Found: /media/team_images/member6.jpg
+"GET /media/team_images/member6.jpg HTTP/1.1" 404 5682
+"GET /media/team_images/final.jpg HTTP/1.1" 200 18327
+"POST /api/register-patient/ HTTP/1.1" 200 161
+"GET / HTTP/1.1" 200 52885
+"GET /media/team_images/member6.jpg HTTP/1.1" 200 259525
+"GET /media/team_images/member4.jpg HTTP/1.1" 200 46745
+"GET / HTTP/1.1" 200 52885
+"GET /media/team_images/member6.jpg HTTP/1.1" 304 0
+"GET / HTTP/1.1" 200 52885
+"GET /media/team_images/member2.jpg HTTP/1.1" 304 0
+"GET /media/team_images/member4.jpg HTTP/1.1" 304 0
+"GET /media/team_images/member3.jpg HTTP/1.1" 304 0
+"GET /media/team_images/member6.jpg HTTP/1.1" 304 0
+"GET /media/team_images/member5.jpg HTTP/1.1" 304 0
+"GET / HTTP/1.1" 200 52885
+"POST /api/register-patient/ HTTP/1.1" 200 160
+"GET / HTTP/1.1" 200 52887
+"GET /media/team_images/member1.jpg HTTP/1.1" 304 0
+"GET /media/team_images/member6.jpg HTTP/1.1" 304 0
+"GET / HTTP/1.1" 200 52887
+"GET / HTTP/1.1" 200 52887
+"POST /api/register-patient/ HTTP/1.1" 200 160
+"POST /api/login-patient/ HTTP/1.1" 200 85
+"GET / HTTP/1.1" 200 52887
+"GET /media/team_images/member6.jpg HTTP/1.1" 304 0
+"GET / HTTP/1.1" 200 52887
+"GET /media/team_images/member6.jpg HTTP/1.1" 304 0
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 52887
+"GET /media/team_images/final.jpg HTTP/1.1" 200 18327
+"GET / HTTP/1.1" 200 52887
+"GET /media/team_images/member6.jpg HTTP/1.1" 304 0
+"POST /api/register-patient/ HTTP/1.1" 200 160
+"POST /api/register-patient/ HTTP/1.1" 200 70
+"GET / HTTP/1.1" 200 52887
+"GET /media/team_images/member6.jpg HTTP/1.1" 304 0
+"POST /api/register-patient/ HTTP/1.1" 200 164
+"POST /api/login-patient/ HTTP/1.1" 200 118
+"GET /api/patient-files/987612345678/ HTTP/1.1" 200 30
+"POST /api/book-appointment/ HTTP/1.1" 200 71
+"POST /api/book-appointment/ HTTP/1.1" 200 71
+"POST /api/book-appointment/ HTTP/1.1" 200 71
+"POST /api/book-appointment/ HTTP/1.1" 200 71
+"POST /api/book-appointment/ HTTP/1.1" 200 71
+"GET / HTTP/1.1" 200 53926
+"GET /media/team_images/member1.jpg HTTP/1.1" 304 0
+"GET /media/team_images/member3.jpg HTTP/1.1" 304 0
+"GET /media/team_images/member2.jpg HTTP/1.1" 304 0
+"GET /media/team_images/member4.jpg HTTP/1.1" 304 0
+"GET /media/team_images/member5.jpg HTTP/1.1" 304 0
+"GET /media/team_images/member6.jpg HTTP/1.1" 200 259525
+"POST /api/login-patient/ HTTP/1.1" 200 118
+"GET /api/patient-files/987612345678/ HTTP/1.1" 200 30
+"POST /api/book-appointment/ HTTP/1.1" 200 71
+"POST /api/book-appointment/ HTTP/1.1" 200 71
+"POST /api/book-appointment/ HTTP/1.1" 200 71
+"POST /api/book-appointment/ HTTP/1.1" 200 71
+"POST /api/book-appointment/ HTTP/1.1" 200 71
+/home/user/myproject/health/models.py changed, reloading.
+Watching for file changes with StatReloader
+/home/user/myproject/health/views.py changed, reloading.
+Watching for file changes with StatReloader
+/home/user/myproject/health/models.py changed, reloading.
+Watching for file changes with StatReloader
+/home/user/myproject/health/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 53926
+"GET /media/team_images/member6.jpg HTTP/1.1" 200 259525
+"POST /api/login-patient/ HTTP/1.1" 200 118
+"GET /api/patient-files/987612345678/ HTTP/1.1" 200 30
+"POST /api/book-appointment/ HTTP/1.1" 200 275
+"POST /api/book-appointment/ HTTP/1.1" 200 275
+"POST /api/book-appointment/ HTTP/1.1" 200 276
+"POST /api/upload-file/ HTTP/1.1" 200 109
+"GET /api/patient-files/987612345678/ HTTP/1.1" 200 330045
+"GET /api/patient-files/987612345678/ HTTP/1.1" 200 330045
+"GET /api/patient-files/987612345678/ HTTP/1.1" 200 330045
+"GET / HTTP/1.1" 200 53926
+"POST /api/register-doctor/ HTTP/1.1" 200 240
+"POST /api/login-doctor/ HTTP/1.1" 200 158
+"GET / HTTP/1.1" 200 53926
+"GET /media/team_images/member6.jpg HTTP/1.1" 304 0
+"POST /api/register-worker/ HTTP/1.1" 200 182
+"POST /api/login-worker/ HTTP/1.1" 200 93
+"GET / HTTP/1.1" 200 53926
+"GET /media/team_images/member6.jpg HTTP/1.1" 200 259525
+"GET /admin HTTP/1.1" 301 0
+"GET /admin/ HTTP/1.1" 200 11956
+"GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+"GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 200 392
+"GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+"GET /admin HTTP/1.1" 301 0
+"GET /admin/ HTTP/1.1" 200 11956
+"POST /admin/logout/ HTTP/1.1" 200 3585
+"GET /admin HTTP/1.1" 301 0
+"GET /admin/ HTTP/1.1" 302 0
+"GET /admin/login/?next=/admin/ HTTP/1.1" 200 4190
+"GET /admin HTTP/1.1" 301 0
+"GET /admin/ HTTP/1.1" 302 0
+"GET /admin/login/?next=/admin/ HTTP/1.1" 200 4190
+"POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+"GET /admin/ HTTP/1.1" 200 11956
+Not Found: /favicon.ico
+"GET /admin/health/patient/ HTTP/1.1" 200 16197
+"GET /static/admin/img/search.svg HTTP/1.1" 200 458
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+"GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1097
+"GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 581
+Not Found: /favicon.ico
+"GET /admin/health/medicalfile/ HTTP/1.1" 200 14944
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/health/healthworker/ HTTP/1.1" 200 14158
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/health/doctor/ HTTP/1.1" 200 17043
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"GET /admin/health/appointment/ HTTP/1.1" 200 24802
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+"POST /admin/logout/ HTTP/1.1" 200 3585
+"POST /api/login-patient/ HTTP/1.1" 200 118
+"GET /api/patient-files/987612345678/ HTTP/1.1" 200 330045
+"POST /api/login-doctor/ HTTP/1.1" 200 158
+"GET /api/verify-patient/987612345678/ HTTP/1.1" 200 118
+"GET /api/patient-files/987612345678/ HTTP/1.1" 200 330045
+"GET / HTTP/1.1" 200 53926
+"GET /media/team_images/member1.jpg HTTP/1.1" 200 63888
+"GET /media/team_images/member2.jpg HTTP/1.1" 304 0
+"GET /media/team_images/member4.jpg HTTP/1.1" 200 46745
+"GET /media/team_images/member3.jpg HTTP/1.1" 304 0
+"GET /media/team_images/member5.jpg HTTP/1.1" 304 0
+"GET /media/team_images/member6.jpg HTTP/1.1" 200 259525
+"GET /media/team_images/final.jpg HTTP/1.1" 200 18327
