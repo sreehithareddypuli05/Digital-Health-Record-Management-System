@@ -12,14 +12,19 @@ Advantages:-
 
 ●​ Continuity of Care – Health records stay with the worker wherever they move,ensuring
 uninterrupted treatment
+
 ●​ Faster & Better Medical Services – Doctors can instantly see medical history, test
 reports → reduces delays in diagnosis and treatment
+
 ●​ Cost Savings – Paperwork and unnecessary medicines→ lowers healthcare expenses
 for workers
+
 ●​ Portable & Worker-Centered – Migrant workers carry their digital record like a health
 identity, usable across hospitals,states, and employers.
+
 ●​ Data for Public Health Planning – Authorities can track disease patterns,vaccination
 coverage, and workplace health risks → helps in targeted interventions
+
 ●​ Reduced duplication of diagnostics:- It minimizes unnecessary repetition of diagnostic
 tests, which not only reduces healthcare costs but also improves timely access to
 treatment
